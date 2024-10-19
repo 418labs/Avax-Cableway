@@ -1,72 +1,76 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-const DeployForm: React.FC = () => {
-  const [sourceRPC, setSourceRPC] = useState('')
-  const [destRPC, setDestRPC] = useState('')
-  const [pollingFrequency, setPollingFrequency] = useState('')
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Implement form submission logic
-    console.log('Form submitted', { sourceRPC, destRPC, pollingFrequency })
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="max-w-lg mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="sourceRPC">
-          Source L1 RPC Endpoint:
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="sourceRPC"
-          type="text"
-          placeholder="https://rpc.example.com"
-          value={sourceRPC}
-          onChange={(e) => setSourceRPC(e.target.value)}
-          required
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="destRPC">
-          Destination L1 RPC Endpoint:
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="destRPC"
-          type="text"
-          placeholder="https://rpc.example.com"
-          value={destRPC}
-          onChange={(e) => setDestRPC(e.target.value)}
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="pollingFrequency">
-          Polling Frequency (ms):
-        </label>
-        <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          id="pollingFrequency"
-          type="number"
-          placeholder="1000"
-          value={pollingFrequency}
-          onChange={(e) => setPollingFrequency(e.target.value)}
-          required
-        />
-      </div>
-      <div className="flex items-center justify-between">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          type="submit"
-        >
-          Deploy Relayer
-        </button>
-      </div>
-    </form>
-  )
+interface DeployFormProps {
+  onDeploy: (data: {
+    sourceRPC: string;
+    destinationRPC: string;
+    pollingFrequency: string;
+  }) => void;
 }
 
-export default DeployForm
+const DeployForm: React.FC<DeployFormProps> = ({ onDeploy }) => {
+  const [sourceRPC, setSourceRPC] = useState('https://rpc.example.com');
+  const [destinationRPC, setDestinationRPC] = useState('https://rpc.example.com');
+  const [pollingFrequency, setPollingFrequency] = useState('1000');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onDeploy({ sourceRPC, destinationRPC, pollingFrequency });
+  };
+
+  return (
+    <div className="bg-gray-800 bg-opacity-50 p-6 rounded-lg backdrop-filter backdrop-blur-lg max-w-2xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4 text-center">Deploy Your Relayer</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label htmlFor="sourceRPC" className="block text-sm font-medium text-gray-300">
+            Source L1 RPC Endpoint:
+          </label>
+          <input
+            type="text"
+            id="sourceRPC"
+            value={sourceRPC}
+            onChange={(e) => setSourceRPC(e.target.value)}
+            required
+            className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-red-500 focus:ring-red-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="destinationRPC" className="block text-sm font-medium text-gray-300">
+            Destination L1 RPC Endpoint:
+          </label>
+          <input
+            type="text"
+            id="destinationRPC"
+            value={destinationRPC}
+            onChange={(e) => setDestinationRPC(e.target.value)}
+            required
+            className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-red-500 focus:ring-red-500"
+          />
+        </div>
+        <div>
+          <label htmlFor="pollingFrequency" className="block text-sm font-medium text-gray-300">
+            Polling Frequency (ms):
+          </label>
+          <input
+            type="number"
+            id="pollingFrequency"
+            value={pollingFrequency}
+            onChange={(e) => setPollingFrequency(e.target.value)}
+            required
+            className="mt-1 block w-full rounded-md bg-gray-700 border-gray-600 text-white focus:border-red-500 focus:ring-red-500"
+          />
+        </div>
+        <div className="text-center">
+          <button type="submit" className="btn btn-primary">
+            Deploy Relayer
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default DeployForm;
