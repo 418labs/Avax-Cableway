@@ -21,7 +21,7 @@ const Navbar = () => {
             alt="Logo"
             width={120}
             height={80}
-            className="h-5/6 w-auto object-contain"
+            className="h-full w-auto object-cover"
           />
         </Link>
         <div className="flex items-center space-x-4">
