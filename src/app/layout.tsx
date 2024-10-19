@@ -7,7 +7,7 @@ import Footer from '../components/Footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Sleet: Relayer as a Service',
+  title: 'Avax-Cableway: Relayer as a Service',
   description: 'Deploy and manage your relayers on Avalanche',
 }
 

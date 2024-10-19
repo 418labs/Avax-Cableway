@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Home, Layers, LayoutDashboard } from 'lucide-react';
 
 const Navbar = () => {
@@ -12,9 +13,17 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-red-500">Sleet</Link>
+    <nav className="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg h-20 p-0">
+      <div className="container mx-auto flex justify-between items-center h-full">
+        <Link href="/" className="flex items-center h-full">
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            width={120}
+            height={80}
+            className="h-5/6 w-auto object-contain"
+          />
+        </Link>
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex items-center space-x-1 hover:text-red-500 transition-colors">
             <Home size={18} />

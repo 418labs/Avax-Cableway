@@ -30,7 +30,7 @@ const Home = () => {
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-16">
         <h1 className="text-6xl font-bold mb-4 text-white">
-          Sleet: <span className="text-red-500">Relayer as a Service</span>
+        Avax-Cableway: <span className="text-red-500">Relayer as a Service</span>
         </h1>
         <p className="text-xl mb-8 max-w-2xl mx-auto">
           Deploy your personalized Avalanche Warp Messaging (AWM) relayer with
