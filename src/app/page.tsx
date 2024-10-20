@@ -1,32 +1,9 @@
 'use client';
 
-import React, { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, Network, Code, Smartphone } from 'lucide-react';
-import DeployForm from '../components/DeployForm';
-import ConfirmationModal from '../components/ConfirmationModal/intex';
 
 const Home = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [deploymentData, setDeploymentData] = useState({
-    sourceRPC: '',
-    destinationRPC: '',
-    pollingFrequency: '',
-  });
-
-  const handleDeploy = (data: React.SetStateAction<{ sourceRPC: string; destinationRPC: string; pollingFrequency: string; }>) => {
-    setDeploymentData(data);
-    setShowConfirmation(true);
-  };
-
-  const handleConfirm = () => {
-    // Here you would typically call an API to deploy the relayer
-    console.log('Deploying relayer with:', deploymentData);
-    setShowConfirmation(false);
-    setShowForm(false);
-  };
-
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-16">
@@ -42,15 +19,6 @@ const Home = () => {
           <ArrowRight className="ml-2" size={20} />
         </Link>
       </div>
-
-      {showForm && <DeployForm onDeploy={handleDeploy} />}
-
-      <ConfirmationModal
-        isOpen={showConfirmation}
-        onClose={() => setShowConfirmation(false)}
-        onConfirm={handleConfirm}
-        data={deploymentData}
-      />
 
       <div className="mt-24">
         <h2 className="text-3xl font-bold mb-8 text-center">Future Features</h2>
