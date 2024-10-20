@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0f0f0f;
+  color: #ffffff;
+}
+
+/* Custom styles */
+.bg-avalanche {
+  background-color: #E84142;
+}
+
+.text-avalanche {
+  color: #E84142;
+}
+
+/* Rounded buttons */
+.btn {
+  @apply font-semibold py-2 px-4 rounded-full transition-all duration-300 ease-in-out;
+}
+
+.btn-primary {
+  @apply bg-red-500 text-white hover:bg-red-600 hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-transparent text-red-500 border border-red-500 hover:bg-red-500 hover:text-white hover:shadow-lg;
+}
+
+/* Animated background */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(216, 16, 16, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(255, 68, 68, 0.05) 0%, transparent 40%);
+  animation: pulse 15s infinite alternate;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* Add more custom styles as needed */
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
