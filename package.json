@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-ecs": "^3.675.0",
+    "@aws-sdk/client-iam": "^3.675.0",
     "lucide-react": "^0.453.0",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",
-    "recharts": "^2.13.0"
+    "recharts": "^2.13.0",
+    "viem": "^2.21.30"
   },
   "devDependencies": {
     "@types/node": "^20",
