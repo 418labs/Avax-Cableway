@@ -21,6 +21,14 @@ export type L1Config = {
 export type L1SourceConfig = L1Config & {"message-contracts": Record<string, Required<L1MessageContractConfig>>};
 export type L1DestConfig = Pick<L1Config, "subnet-id" | "blockchain-id" | "vm" | "rpc-endpoint" > & {"account-private-key": string};
 
+export type RelayerConfig = {
+  "log-level": string;
+  "p-chain-api": L1EndpointConfig;
+  "info-api": L1EndpointConfig;
+  "source-blockchains": L1SourceConfig[];
+  "destination-blockchains": L1DestConfig[];
+}
+
 export const L1_CHAINS_CONFIG: Record<string, L1Config> = {
     "11111111111111111111111111111111LpoYY": {
       "subnet-id": "11111111111111111111111111111111LpoYY",

@@ -1,13 +1,30 @@
 import { NextRequest } from 'next/server'
-import { simulateDockerRunInFargate } from '@/utils';
+import { simulateDockerRunInFargate, buildConfigJson } from '@/utils';
+import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
+
 
 export async function POST(request: NextRequest ) {
     try {
-      const { configJson } = await request.json();
-      const result = await simulateDockerRunInFargate({
-        configJson,
+      const {
+        sourceChainIds,
+        destinationChainIds,
+      } = await request.json();
+      const accountPrivateKey = generatePrivateKey();
+      const account = privateKeyToAccount(accountPrivateKey);
+      const config = buildConfigJson({
+        sourceChainIds,
+        destinationChainIds,
+        rewardAddress: account.address,
+        accountPrivateKey,
       });
-      return new Response(JSON.stringify(result), {
+      const result = await simulateDockerRunInFargate({
+        configJson: JSON.stringify(config),
+      });
+      return new Response(JSON.stringify({
+        address: account.address,
+        privateKey: accountPrivateKey,
+        awsresult: result
+      }), {
         status: 200,
         headers: {
           'Content-Type': 'application/json',
